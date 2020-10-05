@@ -16,14 +16,10 @@
         <Button Text="4"
                 x:Name="FourthButton"
                 Clicked="FourthButton_Clicked"/>
-        <Entry Text="Čia bus išvedami sugeneruoti skaičiai nuo -100 iki 0"
+        <Entry Text="Čia bus išvedami sugeneruoti skaičiai"
                HorizontalOptions="Center"
                IsReadOnly="True"
                x:Name="NumberEntry"/>
-        <Entry Text="Čia bus išvedami sugeneruoti skaičiai nuo 0 iki 100"
-               HorizontalOptions="Center"
-               IsReadOnly="True"
-               x:Name="SecondNumberEntry"/>
-       
+
     </StackLayout>
 </ContentPage>

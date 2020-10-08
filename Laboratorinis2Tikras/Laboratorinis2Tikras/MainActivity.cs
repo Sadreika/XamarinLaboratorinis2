@@ -20,14 +20,12 @@ namespace Laboratorinis2Tikras
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
-           
-            // reikia is 2 activity susirinkti duomenis
             Button button = FindViewById<Button>(Resource.Id.button1);
             button.Click += Button_Click;
             Button button2 = FindViewById<Button>(Resource.Id.button2);
             button2.Click += async delegate
             {
-                TextInputEditText input = FindViewById<TextInputEditText>(Resource.Id.textInputEditText1);
+                EditText input = FindViewById<EditText>(Resource.Id.textInputEditText1);
                 userInput = input.Text;
                 await Share.RequestAsync(new ShareTextRequest
                 {
@@ -38,8 +36,18 @@ namespace Laboratorinis2Tikras
             button3.Click += delegate
             {
                 Intent intent = new Intent(this, typeof(Activity2));
-                StartActivity(intent);
+                StartActivityForResult(intent, 0);
             };
+            Button button4 = FindViewById<Button>(Resource.Id.button4);
+            button4.Click += Button4_Click; ;
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(Activity3));
+            EditText input = FindViewById<EditText>(Resource.Id.textInputEditText1);
+            intent.PutExtra("textToShow", input.Text);
+            StartActivity(intent);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
@@ -48,10 +56,9 @@ namespace Laboratorinis2Tikras
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
         private void Button_Click(object sender, EventArgs e)
         {
-            TextInputEditText input = FindViewById<TextInputEditText>(Resource.Id.textInputEditText1);
+            EditText input = FindViewById<EditText>(Resource.Id.textInputEditText1);
             userInput = input.Text;
             TextView textView = FindViewById<TextView>(Resource.Id.textView2);
             if (userInput.Equals(""))
@@ -64,10 +71,15 @@ namespace Laboratorinis2Tikras
                 textView.Text = userInputArray.Count().ToString();
             }
         }
-
-        public void settingUserInput(string userInput)
+        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
-            this.userInput = userInput;
+            base.OnActivityResult(requestCode, resultCode, data);
+            if(resultCode == Result.Ok)
+            {
+                string result = data.GetStringExtra("user");
+                EditText input = FindViewById<EditText>(Resource.Id.textInputEditText1);
+                input.Text = result;
+            }
         }
     }
 }

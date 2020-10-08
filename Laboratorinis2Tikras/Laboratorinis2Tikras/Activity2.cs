@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.Design.Widget;
-using Android.Views;
 using Android.Widget;
 
 namespace Laboratorinis2Tikras
@@ -25,12 +20,11 @@ namespace Laboratorinis2Tikras
         }
         private void Button_Click(object sender, EventArgs e)
         {
-            
             TextInputEditText input = FindViewById<TextInputEditText>(Resource.Id.textInputEditText1);
             Intent intent = new Intent(this, typeof(MainActivity));
-            Intent.PutExtra("userInput", input.ToString());
-            StartActivity(intent);
-            SetContentView(Resource.Layout.activity_main);
+            intent.PutExtra("user", input.Text.ToString());
+            SetResult(Result.Ok, intent);
+            Finish();
         }
     }
 }

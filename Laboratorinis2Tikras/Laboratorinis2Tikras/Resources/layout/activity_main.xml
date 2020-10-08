@@ -18,8 +18,8 @@
         android:id="@+id/textView1"
         android:gravity="center_horizontal"
         />
-    <android.support.design.widget.TextInputEditText
-        android:layout_width="match_parent"
+    <EditText
+         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
         android:id="@+id/textInputEditText1"/>
@@ -50,8 +50,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/button3"
         android:gravity="center_horizontal"/>
-
-
+    <Button
+        android:text="Activity 3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        android:gravity="center_horizontal"/>
 
 </LinearLayout>
    
